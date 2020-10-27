@@ -6,8 +6,6 @@ import (
 	"github.com/chinsyo/xinshou.net/model"
 	"github.com/kataras/iris/v12"
 
-	// "github.com/chinsyo/xinshou.net/main"
-	// "fmt"
 	"context"
 )
 
@@ -55,16 +53,17 @@ func (s *articleService) Create(ctx iris.Context) {
 
 	var article model.Article
 	err := ctx.ReadJSON(&article)
-	// fmt.Println(article, "will be create")
-
 	if err != nil {
 		ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
 			Title("Article creation failure").DetailErr(err))
 		return
 	}
+
 	_, err = s.Controller.CreateArticle(article)
 	if err != nil {
-
+		core.SharedLogger.Errorf("create article err: %s", err)
+		ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
+			Title("Article creation failure").DetailErr(err))
 		return
 	}
 	ctx.StatusCode(iris.StatusCreated)
@@ -73,40 +72,8 @@ func (s *articleService) Create(ctx iris.Context) {
 
 func (s *articleService) Update(ctx iris.Context) {
 
-	// var article model.Article
-	// err := ctx.ReadJSON(&article)
-	// // fmt.Println(article, "will be create")
-
-	// if err != nil {
-	// 	ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
-	// 		Title("Article creation failure").DetailErr(err))
-	// 	return
-	// }
-	// _, err = s.Controller.CreateArticle(article)
-	// if err != nil {
-
-	// 	return
-	// }
-	// ctx.StatusCode(iris.StatusCreated)
-
 }
 
 func (s *articleService) Delete(ctx iris.Context) {
-
-	// var article model.Article
-	// err := ctx.ReadJSON(&article)
-	// // fmt.Println(article, "will be create")
-
-	// if err != nil {
-	// 	ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
-	// 		Title("Article creation failure").DetailErr(err))
-	// 	return
-	// }
-	// _, err = s.Controller.CreateArticle(article)
-	// if err != nil {
-
-	// 	return
-	// }
-	// ctx.StatusCode(iris.StatusCreated)
 
 }
