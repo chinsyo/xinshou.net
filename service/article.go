@@ -1,11 +1,11 @@
 package service
 
 import (
+	"context"
 	"github.com/chinsyo/xinshou.net/controller"
 	"github.com/chinsyo/xinshou.net/core"
 	"github.com/chinsyo/xinshou.net/model"
 	"github.com/kataras/iris/v12"
-	"context"
 )
 
 type IArticleService interface {
@@ -75,7 +75,7 @@ func (s *articleService) Update(ctx iris.Context) {
 func (s *articleService) Delete(ctx iris.Context) {
 	params := ctx.Params()
 	articleId, _ := params.GetUint("article_id")
-	article := model.Article{ID:articleId}
+	article := model.Article{ID: articleId}
 
 	_, err := s.Controller.DeleteArticle(article)
 	if err != nil {
