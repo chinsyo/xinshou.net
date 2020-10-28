@@ -1,9 +1,9 @@
 package controller
 
 import (
-	"github.com/chinsyo/xinshou.net/model"
-	// "github.com/chinsyo/xinshou.net/view"
+	"errors"
 	"github.com/chinsyo/xinshou.net/core"
+	"github.com/chinsyo/xinshou.net/model"
 )
 
 type ArticleController struct {
@@ -29,6 +29,9 @@ func (ctrl *ArticleController) ArticleDetail(articleId uint) (article model.Arti
 }
 
 func (ctrl *ArticleController) CreateArticle(article model.Article) (model.Article, error) {
+	if core.Conn().First(&article).RowsAffected > 0 {
+		return article, errors.New("Article ID already exist")
+	}
 	core.Conn().Create(&article)
 	return article, nil
 }
