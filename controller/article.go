@@ -11,9 +11,7 @@ type ArticleController struct {
 }
 
 func (ctrl *ArticleController) ListArticles() (articles []model.Article, err error) {
-	// article := model.Article{Title: "Title!", Content: "Content,", ID: 1}
-	// articles = []model.Article{article, article}
-	// articles = view.ArticleView.FromArticles(articles)
+
 	core.Conn().Find(&articles)
 	if articles != nil {
 		return
