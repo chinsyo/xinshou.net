@@ -41,6 +41,9 @@ func (ctrl *ArticleController) UpdateArticle(article model.Article) (model.Artic
 }
 
 func (ctrl *ArticleController) DeleteArticle(article model.Article) (model.Article, error) {
-	core.Conn().Delete(&article)
+	if core.Conn().First(&article).RowsAffected == 0 {
+        return article, errors.New("Article ID does not exist")
+    }
+    core.Conn().Delete(&article)
 	return article, nil
 }

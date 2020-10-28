@@ -80,7 +80,7 @@ func (s *articleService) Delete(ctx iris.Context) {
 	_, err := s.Controller.DeleteArticle(article)
 	if err != nil {
 		ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
-			Title("Article creation failure").DetailErr(err))
+			Title("Article delete failure").DetailErr(err))
 		return
 	}
 	ctx.StatusCode(iris.StatusOK)
