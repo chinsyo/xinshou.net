@@ -1,9 +1,9 @@
 package core
 
 import (
-	"gorm.io/gorm"
-	"gorm.io/driver/postgres"
 	"github.com/chinsyo/xinshou.net/model"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 func Conn() *gorm.DB {

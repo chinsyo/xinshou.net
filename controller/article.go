@@ -4,7 +4,6 @@ import (
 	"github.com/chinsyo/xinshou.net/model"
 	// "github.com/chinsyo/xinshou.net/view"
 	"github.com/chinsyo/xinshou.net/core"
-
 )
 
 type ArticleController struct {

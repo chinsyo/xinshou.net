@@ -12,7 +12,6 @@ func init() {
 
 func main() {
 
-
 	app := iris.New()
 	article := app.Party("/article")
 	{
@@ -21,7 +20,6 @@ func main() {
 		article.Get("/{article_id:uint}", service.ArticleService.Detail)
 		article.Delete("/{article_id:uint}", service.ArticleService.Delete)
 		article.Update("/{article_id:uint}", service.ArticleService.Update)
-
 
 	}
 
