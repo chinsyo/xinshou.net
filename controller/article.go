@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"errors"
 	"github.com/chinsyo/xinshou.net/core"
 	"github.com/chinsyo/xinshou.net/model"
 )
@@ -30,7 +29,7 @@ func (ctrl *ArticleController) ArticleDetail(articleId uint) (article model.Arti
 
 func (ctrl *ArticleController) CreateArticle(article model.Article) (model.Article, error) {
 	if core.Conn().First(&article).RowsAffected > 0 {
-		return article, errors.New("Article ID already exist")
+		return article, core.ErrAlreadyExist
 	}
 	core.Conn().Create(&article)
 	return article, nil
@@ -42,7 +41,7 @@ func (ctrl *ArticleController) UpdateArticle(article model.Article) (model.Artic
 
 func (ctrl *ArticleController) DeleteArticle(article model.Article) (model.Article, error) {
 	if core.Conn().First(&article).RowsAffected == 0 {
-        return article, errors.New("Article ID does not exist")
+        return article, core.ErrDoesNotExist
     }
     core.Conn().Delete(&article)
 	return article, nil
