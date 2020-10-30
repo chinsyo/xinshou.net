@@ -1,8 +1,8 @@
 package core
 
 import (
-    "errors"
+	"errors"
 )
 
-var ErrDoesNotExist = errors.New("Does not exist!") 
+var ErrDoesNotExist = errors.New("Does not exist!")
 var ErrAlreadyExist = errors.New("Already exist!")

@@ -38,9 +38,9 @@ func (ctrl *ArticleController) UpdateArticle(article model.Article) (model.Artic
 
 func (ctrl *ArticleController) DeleteArticle(articleId uint) (model.Article, error) {
 	var article model.Article
-    if core.Conn().First(&article, articleId).RowsAffected == 0 {
-        return article, core.ErrDoesNotExist
-    }
-    core.Conn().Delete(&article)
+	if core.Conn().First(&article, articleId).RowsAffected == 0 {
+		return article, core.ErrDoesNotExist
+	}
+	core.Conn().Delete(&article)
 	return article, nil
 }
