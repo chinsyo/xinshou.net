@@ -3,13 +3,16 @@ TARGET=xinshou.net
 run: build
 	./${TARGET}
 
-format:
+format: 
 	go fmt ./...
 
-build:
+build: proxy
 	go mod vendor && go build
 
-clean:
-	rm -rf ./${TARGET}
+clean: proxy
+	go mod tidy && rm -rf ./${TARGET}
 
-.PHONY: run build
+proxy:
+	export GOPROXY=goproxy.cn
+
+.PHONY: run build proxy
