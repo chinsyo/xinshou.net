@@ -75,9 +75,8 @@ func (s *articleService) Update(ctx iris.Context) {
 func (s *articleService) Delete(ctx iris.Context) {
 	params := ctx.Params()
 	articleId, _ := params.GetUint("article_id")
-	article := model.Article{ID: articleId}
 
-	_, err := s.Controller.DeleteArticle(article)
+	_, err := s.Controller.DeleteArticle(articleId)
 	if err != nil {
 		ctx.StopWithProblem(iris.StatusBadRequest, iris.NewProblem().
 			Title("Article delete failure").DetailErr(err))
